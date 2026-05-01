@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intercursos 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#0F6E56;--green2:#1D9E75;--green-light:#E1F5EE;--green-dark:#04342C;
+  --amber:#BA7517;--amber-light:#FAEEDA;
+  --red:#E24B4A;--red-light:#FCEBEB;
+  --gray:#888780;--gray-light:#F1EFE8;--gray-dark:#2C2C2A;
+  --white:#fff;--bg:#f5f5f2;--card:#fff;
+  --border:#e0ded8;--text:#1a1a18;--muted:#666;
+}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+.header{background:var(--green-dark);padding:0}
+.header-top{display:flex;align-items:center;justify-content:center;padding:20px 16px 10px;gap:12px}
+.header-badge{background:var(--green2);color:#fff;font-size:10px;letter-spacing:2px;padding:3px 10px;border-radius:20px;font-weight:500;text-transform:uppercase}
+.header-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;letter-spacing:3px;text-align:center;line-height:1}
+.header-sub{text-align:center;font-size:11px;color:#5DCAA5;letter-spacing:3px;text-transform:uppercase;padding-bottom:14px}
+
+/* SPORT TABS */
+.sport-tabs{display:flex;background:var(--green-dark);padding:0 12px 14px;gap:8px}
+.sport-tab{flex:1;padding:9px 8px;border:1.5px solid rgba(255,255,255,0.2);border-radius:10px;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  background:transparent;color:rgba(255,255,255,0.6);transition:all 0.2s}
+.sport-tab.active{background:#fff;color:var(--green-dark);border-color:#fff}
+
+/* CAT TABS */
+.cat-tabs{display:flex;background:var(--green);padding:0 12px;gap:0}
+.cat-tab{flex:1;padding:10px 8px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;
+  color:rgba(255,255,255,0.65);cursor:pointer;border-bottom:2px solid transparent;
+  text-align:center;letter-spacing:0.5px;text-transform:uppercase;transition:all 0.2s}
+.cat-tab.active{color:#fff;border-bottom-color:#fff}
+
+/* NAV TABS */
+.nav-tabs{display:flex;background:var(--card);border-bottom:1px solid var(--border);padding:0 14px;gap:0}
+.nav-tab{padding:12px 14px;font-size:13px;font-weight:500;color:var(--muted);
+  cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap}
+.nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
+
+/* CONTENT */
+.content{padding:14px;background:var(--bg);min-height:300px}
+
+/* TABLE */
+.table-wrap{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.standings-table{width:100%;border-collapse:collapse}
+.standings-table thead tr{background:var(--gray-light)}
+.standings-table th{padding:9px 6px;font-size:10px;font-weight:600;color:var(--muted);
+  text-align:center;letter-spacing:0.8px;text-transform:uppercase}
+.standings-table th.team-col{text-align:left;padding-left:12px}
+.standings-table td{padding:10px 6px;font-size:13px;text-align:center;
+  color:var(--text);border-top:1px solid var(--border)}
+.standings-table td.team-col{text-align:left;padding-left:12px;font-weight:600;font-size:14px}
+.standings-table tr:last-child td{border-bottom:none}
+.standings-table tbody tr:hover td{background:#fafaf7}
+
+.pos-badge{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:600}
+.pos-1{background:#FAC775;color:#412402}
+.pos-2{background:#D3D1C7;color:#2C2C2A}
+.pos-3{background:#EF9F27;color:#412402}
+.pos-n{color:var(--muted);font-size:12px}
+.pts{font-weight:600;color:var(--green);font-size:15px}
+
+/* MATCHES */
+.match-group{margin-bottom:12px}
+.match-date-header{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:1.5px;
+  text-transform:uppercase;padding:8px 4px 6px}
+.match-card{background:var(--card);border-radius:10px;border:1px solid var(--border);
+  margin-bottom:6px;overflow:hidden}
+.match-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
+.match-team{flex:1;font-size:14px;font-weight:500}
+.match-team.right{text-align:right}
+.match-score{display:flex;align-items:center;justify-content:center;gap:4px;
+  min-width:72px;background:var(--green-dark);border-radius:8px;padding:5px 10px;margin:0 10px}
+.match-score span{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;letter-spacing:1px}
+.match-score .dash{color:#5DCAA5;font-size:16px}
+.match-pending{min-width:72px;background:var(--amber-light);border-radius:8px;
+  padding:5px 10px;margin:0 10px;text-align:center;font-size:11px;font-weight:600;
+  color:var(--amber);letter-spacing:0.5px}
+.match-postponed{min-width:72px;background:var(--red-light);border-radius:8px;
+  padding:5px 10px;margin:0 10px;text-align:center;font-size:11px;font-weight:600;
+  color:var(--red);letter-spacing:0.5px}
+.match-note{font-size:11px;color:var(--muted);text-align:center;padding:0 14px 10px}
+
+.empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:13px}
+.section-label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:10px;padding:2px 0}
+
+.hidden{display:none}
+
+/* FOOTER */
+.footer{text-align:center;padding:20px;font-size:11px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-title">Intercursos 2026</div>
+      <div class="header-sub">Resultados y posiciones</div>
+    </div>
+  </div>
+  <div class="sport-tabs">
+    <button class="sport-tab active" onclick="setSport('futbol',this)">⚽ Fútbol</button>
+    <button class="sport-tab" onclick="setSport('voleibol',this)">🏐 Voleibol</button>
+  </div>
+  <div class="cat-tabs" id="cat-tabs-futbol">
+    <div class="cat-tab active" onclick="setCategory('juvenil',this,'futbol')">Juvenil</div>
+    <div class="cat-tab" onclick="setCategory('prejuvenil',this,'futbol')">Prejuvenil</div>
+  </div>
+  <div class="cat-tabs hidden" id="cat-tabs-voleibol">
+    <div class="cat-tab active" onclick="setCategory('juvenil',this,'voleibol')">Juvenil</div>
+    <div class="cat-tab" onclick="setCategory('prejuvenil',this,'voleibol')">Prejuvenil</div>
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="setTab('standings',this)">Posiciones</div>
+  <div class="nav-tab" onclick="setTab('matches',this)">Partidos</div>
+</div>
+
+<div class="content" id="main-content"></div>
+
+<div class="footer">Actualizado constantemente · Solo lectura</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const DATA = {
+  futbol: {
+    juvenil: {
+      teams: ['8A','8B','8C','9','10A','10B','11'],
+      matches: [
+        {home:'8A',away:'8B',hg:4,ag:3,status:'played'},
+        {home:'8A',away:'9', hg:3,ag:3,status:'played'},
+        {home:'8A',away:'10A',hg:2,ag:3,status:'played'},
+        {home:'8A',away:'10B',hg:2,ag:2,status:'played'},
+        {home:'8A',away:'11', hg:2,ag:1,status:'played'},
+        {home:'8C',away:'9', hg:1,ag:0,status:'played'},
+        {home:'8C',away:'10A',hg:5,ag:3,status:'played'},
+        {home:'9', away:'10A',hg:0,ag:8,status:'played'},
+        {home:'10B',away:'11',hg:2,ag:0,status:'played'},
+        // Pendientes
+        {home:'8B',away:'8C', status:'pending'},
+        {home:'8B',away:'9',  status:'pending'},
+        {home:'8B',away:'10A',status:'pending'},
+        {home:'8B',away:'10B',status:'pending'},
+        {home:'8B',away:'11', status:'pending'},
+        {home:'8C',away:'10B',status:'pending'},
+        {home:'8C',away:'11', status:'pending'},
+        {home:'9', away:'10B',status:'pending'},
+        {home:'9', away:'11', status:'pending'},
+        {home:'10A',away:'10B',status:'pending'},
+        {home:'10A',away:'11', status:'pending'},
+      ]
+    },
+    prejuvenil: {
+      teams: ['6A','6B','6C','7A','7C'],
+      matches: [
+        {home:'6A',away:'6B',hg:4,ag:3,status:'played'},
+        {home:'6A',away:'6C',hg:3,ag:1,status:'played'},
+        {home:'6A',away:'7A',hg:4,ag:5,status:'played'},
+        {home:'6A',away:'7C',hg:4,ag:3,status:'played'},
+        {home:'6B',away:'6C',hg:0,ag:1,status:'played'},
+        {home:'6B',away:'7A',hg:6,ag:6,status:'played'},
+        {home:'6B',away:'7C',hg:2,ag:1,status:'played'},
+        {home:'6C',away:'7A',hg:3,ag:2,status:'played'},
+        {home:'7A',away:'7C',hg:3,ag:6,status:'played'},
+        {home:'6C',away:'7C',status:'pending'},
+      ]
+    }
+  },
+  voleibol: {
+    juvenil: {
+      teams: [],
+      matches: []
+    },
+    prejuvenil: {
+      teams: [],
+      matches: []
+    }
+  }
+};
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let currentSport = 'futbol';
+let currentCategory = 'juvenil';
+let currentTab = 'standings';
+
+// ─── STANDINGS CALCULATOR ────────────────────────────────────────────────────
+function calcStandings(teams, matches) {
+  const table = {};
+  teams.forEach(t => table[t] = {pj:0,g:0,e:0,p:0,gf:0,gc:0,pts:0});
+  matches.forEach(m => {
+    if(m.status !== 'played') return;
+    const h = m.home, a = m.away;
+    table[h].pj++; table[a].pj++;
+    table[h].gf += m.hg; table[h].gc += m.ag;
+    table[a].gf += m.ag; table[a].gc += m.hg;
+    if(m.hg > m.ag){ table[h].g++; table[h].pts+=3; table[a].p++; }
+    else if(m.hg < m.ag){ table[a].g++; table[a].pts+=3; table[h].p++; }
+    else { table[h].e++; table[h].pts++; table[a].e++; table[a].pts++; }
+  });
+  return Object.entries(table).map(([name,s])=>({name,...s,dg:s.gf-s.gc}))
+    .sort((a,b)=> b.pts-a.pts || b.dg-a.dg || b.gf-a.gf);
+}
+
+// ─── RENDER STANDINGS ────────────────────────────────────────────────────────
+function renderStandings(teams, matches) {
+  if(teams.length === 0) return '<div class="empty">Próximamente — aún no hay equipos registrados.</div>';
+  const rows = calcStandings(teams, matches);
+  const badges = ['pos-1','pos-2','pos-3'];
+  let html = '<div class="table-wrap"><table class="standings-table"><thead><tr>';
+  html += '<th>#</th><th class="team-col">Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th>';
+  html += '</tr></thead><tbody>';
+  rows.forEach((r,i)=>{
+    const b = i < 3 ? badges[i] : 'pos-n';
+    const badge = i < 3 ? `<span class="pos-badge ${b}">${i+1}</span>` : `<span class="pos-n">${i+1}</span>`;
+    html += `<tr><td>${badge}</td><td class="team-col">${r.name}</td>
+      <td>${r.pj}</td><td>${r.g}</td><td>${r.e}</td><td>${r.p}</td>
+      <td>${r.gf}</td><td>${r.gc}</td><td>${r.dg>0?'+'+r.dg:r.dg}</td>
+      <td class="pts">${r.pts}</td></tr>`;
+  });
+  html += '</tbody></table></div>';
+  return html;
+}
+
+// ─── RENDER MATCHES ──────────────────────────────────────────────────────────
+function renderMatches(matches) {
+  if(matches.length === 0) return '<div class="empty">Próximamente — aún no hay partidos registrados.</div>';
+  const played = matches.filter(m=>m.status==='played');
+  const pending = matches.filter(m=>m.status==='pending');
+  const postponed = matches.filter(m=>m.status==='postponed');
+  let html = '';
+
+  if(played.length){
+    html += '<div class="section-label">Partidos jugados</div>';
+    played.forEach(m=>{
+      html += `<div class="match-card"><div class="match-row">
+        <div class="match-team">${m.home}</div>
+        <div class="match-score"><span>${m.hg}</span><span class="dash">-</span><span>${m.ag}</span></div>
+        <div class="match-team right">${m.away}</div>
+      </div>${m.note?`<div class="match-note">${m.note}</div>`:''}</div>`;
+    });
+  }
+  if(postponed.length){
+    html += '<div class="section-label" style="margin-top:14px">Aplazados</div>';
+    postponed.forEach(m=>{
+      html += `<div class="match-card"><div class="match-row">
+        <div class="match-team">${m.home}</div>
+        <div class="match-postponed">Aplazado</div>
+        <div class="match-team right">${m.away}</div>
+      </div>${m.note?`<div class="match-note">${m.note}</div>`:''}</div>`;
+    });
+  }
+  if(pending.length){
+    html += '<div class="section-label" style="margin-top:14px">Por jugar</div>';
+    pending.forEach(m=>{
+      const info = m.date || 'Fecha por definir';
+      html += `<div class="match-card"><div class="match-row">
+        <div class="match-team">${m.home}</div>
+        <div class="match-pending">${info}</div>
+        <div class="match-team right">${m.away}</div>
+      </div>${m.note?`<div class="match-note">${m.note}</div>`:''}</div>`;
+    });
+  }
+  return html;
+}
+
+// ─── MAIN RENDER ─────────────────────────────────────────────────────────────
+function render() {
+  const d = DATA[currentSport][currentCategory];
+  const el = document.getElementById('main-content');
+  if(currentTab === 'standings') {
+    el.innerHTML = renderStandings(d.teams, d.matches);
+  } else {
+    el.innerHTML = renderMatches(d.matches);
+  }
+}
+
+// ─── CONTROLS ────────────────────────────────────────────────────────────────
+function setSport(sport, btn) {
+  currentSport = sport;
+  currentCategory = 'juvenil';
+  document.querySelectorAll('.sport-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cat-tabs-futbol').classList.toggle('hidden', sport!=='futbol');
+  document.getElementById('cat-tabs-voleibol').classList.toggle('hidden', sport!=='voleibol');
+  // reset cat tab active states
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+  const catContainer = document.getElementById(`cat-tabs-${sport}`);
+  catContainer.querySelector('.cat-tab').classList.add('active');
+  render();
+}
+
+function setCategory(cat, btn, sport) {
+  currentCategory = cat;
+  document.querySelectorAll(`#cat-tabs-${sport} .cat-tab`).forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function setTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
